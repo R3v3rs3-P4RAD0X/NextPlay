@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameLens API Endpoints</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
+        h1 { color: #333; }
+        h2 { color: #555; margin-top: 30px; }
+        code { background-color: #f4f4f4; padding: 2px 6px; border-radius: 4px; font-family: monospace; }
+        .endpoint { border: 1px solid #ddd; padding: 15px; margin-bottom: 20px; border-radius: 5px; }
+        .method { font-weight: bold; color: green; }
+        .path { color: #007bff; }
+        .description { margin-top: 5px; margin-bottom: 10px; }
+        .example { margin-top: 5px; font-size: 0.9em; }
+        .note { font-style: italic; color: #777; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+    <h1>GameLens API Endpoints</h1>
+    <p class="note">When the backend is running (e.g., via Docker), the API is typically available at <code>http://localhost:8000</code>.</p>
+
+    <div class="endpoint">
+        <h2>Health Check</h2>
+        <p><span class="method">GET</span> <span class="path">/health</span></p>
+        <p class="description">Checks the health status of the API. Returns a simple status message.</p>
+        <p class="example">Example: <code>curl http://localhost:8000/health</code></p>
+    </div>
+
+    <div class="endpoint">
+        <h2>User Profile</h2>
+        <p><span class="method">GET</span> <span class="path">/user/{steam_id}/profile</span></p>
+        <p class="description">Retrieves a user's profile information and their owned games. If the user is not found in the database, it attempts to fetch data from a simulated Steam API and stores it.</p>
+        <p class="example">Example: <code>curl http://localhost:8000/user/123456789/profile</code> (replace <code>{steam_id}</code> with an actual ID)</p>
+    </div>
+
+    <div class="endpoint">
+        <h2>User Game Categories</h2>
+        <p><span class="method">GET</span> <span class="path">/user/{steam_id}/categories</span></p>
+        <p class="description">Retrieves games owned by the user, categorized by genre. Returns a 404 if the user is not found.</p>
+        <p class="example">Example: <code>curl http://localhost:8000/user/123456789/categories</code></p>
+    </div>
+
+    <div class="endpoint">
+        <h2>Game Deals</h2>
+        <p><span class="method">GET</span> <span class="path">/deals/{game_name}</span></p>
+        <p class="description">Fetches the latest deals for a given game name. It first checks the database and, if no deals are found, queries a simulated scraper and stores new deals.</p>
+        <p class="example">Example: <code>curl http://localhost:8000/deals/Cyberpunk%202077</code> (URL encode game names with spaces)</p>
+    </div>
+
+    <div class="endpoint">
+        <h2>User Recommendations</h2>
+        <p><span class="method">GET</span> <span class="path">/user/{steam_id}/recommendations</span></p>
+        <p class="description">Provides game deal recommendations for a user based on their played game genres. Returns a 404 if the user is not found.</p>
+        <p class="example">Example: <code>curl http://localhost:8000/user/123456789/recommendations</code></p>
+    </div>
+
+</body>
+</html>

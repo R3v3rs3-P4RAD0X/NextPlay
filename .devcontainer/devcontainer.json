@@ -1,0 +1,31 @@
+{
+  "name": "Python FastAPI Backend",
+  "dockerComposeFile": [
+    "../docker-compose.yml"
+  ],
+  "service": "backend",
+  "workspaceFolder": "/app",
+  "settings": {
+    "terminal.integrated.shell.linux": "/bin/bash",
+    "python.pythonPath": "/usr/local/bin/python",
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": false,
+    "python.linting.flake8Enabled": true,
+    "python.formatting.provider": "black",
+    "editor.formatOnSave": true,
+    "[python]": {
+      "editor.codeActionsOnSave": {
+        "source.organizeImports": true
+      }
+    }
+  },
+  "extensions": [
+    "ms-python.python",
+    "ms-azuretools.vscode-docker",
+    "visualstudioexptteam.vscodeintellicode",
+    "editorconfig.editorconfig",
+    "streetsidesoftware.code-spell-checker"
+  ],
+  "postCreateCommand": "pip install -r requirements.txt && pip install flake8 black isort",
+  "remoteUser": "vscode"
+}
